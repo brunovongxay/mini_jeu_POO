@@ -19,11 +19,11 @@ class Player
     @life_points = 10
   
   end
-
+#méthode show_state qui va afficher l'état de l'objet Player
   def show_state
     puts "#{name} has #{life_points} point(s) of life."
   end
-
+#une méthode indispensable pour un combat : celle qui fait baisser le niveau de vie du joueur.
   def gets_damage(damage)
     damage = damage.to_i
     @life_points -= damage
@@ -33,7 +33,7 @@ class Player
       return show_state
     end
   end
-
+#une méthode indispensable pour un combat : celle qui fait baisser le niveau de vie du joueur.
   def attacks(victim)
     puts "#{name} attacks #{victim.name}"
     victim_damage = compute_damage
@@ -41,7 +41,7 @@ class Player
     puts "He/She gives a loss of #{victim_damage} point(s)."
     victim.gets_damage(victim_damage)
   end
-
+#les dommages seront aléatoires
   def compute_damage
     return rand(1..6)
   end
@@ -63,11 +63,11 @@ class HumanPlayer < Player
   def show_state
     puts "#{name} has #{life_points} point(s) of life and a weapon of level #{weapon_level}"
   end
-
+#un multiplicateur des dégâts
   def compute_damage
     rand(1..6) * @weapon_level
   end
-
+#Une nouvelle fonctionnalité spécifique aux HumanPlayer sera la possibilité pour lui d'aller chercher une nouvelle arme, plus puissante.
   def search_weapon
     new_weapon = rand(1..6)
     puts "You found a weapon of level #{new_weapon}"
@@ -80,8 +80,8 @@ class HumanPlayer < Player
       puts "This weapon has the same level that your present weapon."
     end    
   end
-
-  def search_health_pack
+#chercher un pack de points de vie
+  def search_health_pack 
     result = rand(1..6)
     if result == 1
       puts "You didn't find anything"
